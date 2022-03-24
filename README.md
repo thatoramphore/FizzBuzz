@@ -1,2 +1,2 @@
-# JSsiteTemplate
-Site template for JS projects
+# FizzBuzz
+A JavaScript coding exercise using loops. The program replaces any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz". Numbers are between 0 and 100.
