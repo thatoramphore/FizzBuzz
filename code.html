@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Thato Ramphore</title>
+    <title>FIZZBUZZ: A Coding Project By Thato Ramphore</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,9 +19,9 @@
 
 <body class="d-flex flex-column h-100">
 <!-- NAV SECTION -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <img src="img/TR_Logo_SVG3.svg" alt="Thato Ramphore Logo" class="d-inline-block text-align-top" width="30" height="24"> APPNAME</a>
+        <a class="navbar-brand" href="#"> <img src="img/TR_Mark_Logo_SVG.svg" alt="Thato Ramphore Logo" class="d-inline-block text-align-top" width="30" height="24"> FIZZBUZZ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/thatoramphore/FizzBuzz">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="https://thato.netlify.app/">About</a>
@@ -50,22 +50,104 @@
 <!-- MAIN SECTION -->
 <main class="flex-shrink-0">
     <div class="container py-4 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for FIZZBUZZ</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <!-- code -->
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-//Call Hello World
-function HelloWorld() {
-    alert("Hello, World!");
-}
+                    //get the values from the input
+                    //CONTROLLER (start) function
+                    function getValues(){
+                        //get values from the page
+                        let fizzValue = document.getElementById("fizzValue").value;
+                        let buzzValue = document.getElementById("buzzValue").value;
+                    
+                        //parse into integers
+                        fizzValue = parseInt(fizzValue);
+                        buzzValue = parseInt(buzzValue);
+                    
+                        //validate numbers
+                        if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                            //call fizzBuzz
+                            let fbArray = fizzBuzz(fizzValue, buzzValue);
+                            //call displayData
+                            displayData(fbArray)
+                        } else {
+                            alert("Enter only integers");
+                        }
+                    
+                    }
+                    
+                    //LOGIC function(s)
+                    function fizzBuzz(fizzValue, buzzValue) {
+                        let array = [];
+                        for(let i=1; i<=100; i++){
+                            let value = ((i % fizzValue == 0 ? 'Fizz' : '') + (i % buzzValue == 0 ? 'Buzz' : '') || i);
+                            array.push(value);
+                        }
+                        return array;
+                    }
+                    
+                    //VIEW function(s)
+                    function displayData(fbArray){
+                    
+                        //get the table body element from the page
+                        let tableBody = document.getElementById("results");
+                    
+                        //get the template row
+                        let templateRow = document.getElementById("fizzBuzzTemplate");
+                    
+                        //clear the table
+                        tableBody.innerHTML = "";
+                    
+                        //display data on the table
+                        for(let i=0; i fbArray.length; i+=5){   //i < fbArray, code does not render correctly
+                            let tableRow = document.importNode(templateRow.content, true);
+                            //grab the td content & put into an array
+                            let rowCols = tableRow.querySelectorAll("td");
+                            rowCols[0].classList.add(fbArray[i]);
+                            rowCols[0].textContent = fbArray[i];
+                    
+                            rowCols[1].classList.add(fbArray[i+1]);
+                            rowCols[1].textContent = fbArray[i+1];
+                    
+                            rowCols[2].classList.add(fbArray[i+2]);
+                            rowCols[2].textContent = fbArray[i+2];
+                    
+                            rowCols[3].classList.add(fbArray[i+3]);
+                            rowCols[3].textContent = fbArray[i+3];
+                    
+                            rowCols[4].classList.add(fbArray[i+4]);
+                            rowCols[4].textContent = fbArray[i+4];
+                    
+                            tableBody.appendChild(tableRow);
+                        }
+                    
+                       }
+                    
                 </code></pre>
             </div>
             <!-- description -->
             <div class="col-lg-4">
-                <p>The Code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with the message of "Hello, World!"</p>
+                <p>The Code is structured as follows.</p>
+                <h5>getValues</h5>
+                <p>getValues is a function that uses DOM manipulation methods, such as getElementById to retrieve user input for fizz value and buzz value. Then numbers array is declared to store values between 1 and 100.</p>
+                
+                <h6>parseInt</h6>
+                <p>parseInt validates the input type, if any value entered is not of integer data type it is automatically converted to an integer.</p>
+                <br>
+
+                <h6>If Else</h6>
+                <p>The if statement validates that both fizz value and buzz value are numbers. <br> Then fizzBuzz and displayData functions are called. <br> Furthermore, the user is alerted to only enter integers as input.</p>
+                <br><br><br>
+
+                <h5>fizzBuzz</h5>
+                <p>fizzBuzz function receives fizz value and buzz value as parameters. In a for loop, each number between 1 and 100 is then checked if divisible it is divisible by 3, 5 or both and replaced by 'Fizz', 'Buzz' and 'FizzBuzz' respectively. Then numbers array is returned.</p>
+                <br><br><br><br>
+
+                <h5>displayData</h5>
+                <p>displayData function displays all numbers from 1 to 100. Each row of the table is divided into 5 columns by incrementing the loop with 5 (line 47). <br><br> Table data or content from fizzbuzzTemplate is imported into tableRow using rowCols variable. Different font colors are added to each cell in table based on the predefined CSS class using classList (lines 51 to 64). <br><br>  All the data generated is appended to the table rows (line 66). </p>
+                
             </div>
         </div>
     </div>
@@ -78,7 +160,7 @@ function HelloWorld() {
                 <div><span class="text-muted">&copy;2022</span> Thato Ramphore | thatoramphore.info@gmail.com</div>
             </div>
             <div class="col d-flex align-items-center justify-content-center  justify-content-lg-center ">
-                <a target="_blank" href="https://thato.netlify.app/"><img src="img/THATORAMPHORE_FOOTER_SVG2.svg" alt="Thato Ramphore Logo" height="24"></a>
+                <a target="_blank" href="https://thato.netlify.app/"><img src="img/TR_FOOTER_LOGO_SVG2.svg" alt="Thato Ramphore Logo" height="24"></a>
             </div>
             <div class="col d-flex align-items-center justify-content-center justify-content-lg-end">
                 <div class="row">
